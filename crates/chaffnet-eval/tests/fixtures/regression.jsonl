@@ -1,0 +1,8 @@
+{"id":"spam-links","text":"BUY CHEAP WATCHES https://a.example https://b.example FREE FREE FREE","context":"comment","spam":true}
+{"id":"spam-prize","text":"WIN WIN WIN CLICK https://prize.example https://claim.example NOW NOW","context":"comment","spam":true}
+{"id":"spam-meds","text":"CHEAP MEDS CHEAP MEDS https://pills.example https://deal.example ORDER NOW","context":"forum","spam":true}
+{"id":"spam-promo","text":"LIMITED OFFER LIMITED OFFER https://promo.example https://bonus.example ACT NOW","context":"review","spam":true}
+{"id":"clean-retry","text":"Great point about idempotency; the retry case needs a separate lock.","context":"comment","spam":false}
+{"id":"clean-zipper","text":"The zipper broke after two days, and support replaced it on Friday.","context":"review","spam":false}
+{"id":"clean-meeting","text":"I moved Tuesday's planning call to 14:30 and attached the revised notes.","context":"forum","spam":false}
+{"id":"clean-recipe","text":"I used less salt and baked it for another eight minutes; the center set properly.","context":"comment","spam":false}

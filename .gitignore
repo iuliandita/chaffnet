@@ -1,0 +1,43 @@
+# Rust
+/target
+**/*.rs.bk
+Cargo.lock.orig
+
+# Node / TypeScript
+node_modules/
+dist/
+*.tsbuildinfo
+.npm
+.pnpm-store/
+bun.lockb.orig
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# ONNX / model artifacts (keep these out of git; fetch or build separately)
+*.onnx
+!/models/spam-residual-v1.onnx
+/models/*.bin
+/models/*.pt
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local scratch
+/scratch/
+/tmp/
+
+# Downloaded evaluation corpora
+/data/eval/

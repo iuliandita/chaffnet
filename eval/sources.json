@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "id": "uci-sms-spam",
+      "name": "SMS Spam Collection",
+      "url": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip",
+      "sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+      "license": "CC BY 4.0",
+      "doi": "10.24432/C5CC84",
+      "citation": "Almeida, T. & Hidalgo, J. (2011). SMS Spam Collection.",
+      "importer": "uci_sms",
+      "expected_records": 5574
+    },
+    {
+      "id": "uci-youtube-spam",
+      "name": "YouTube Spam Collection",
+      "url": "https://archive.ics.uci.edu/static/public/380/youtube+spam+collection.zip",
+      "sha256": "bd6182891adb3cfc8334b82c062176dfbebc563bf0ba07e31c2645f916865a0a",
+      "license": "CC BY 4.0",
+      "doi": "10.24432/C58885",
+      "citation": "Alberto, T. & Lochter, J. (2015). YouTube Spam Collection.",
+      "importer": "uci_youtube",
+      "source_records": 1956,
+      "expected_records": 1953,
+      "normalization": "Drops three exact duplicate rows; conflicting duplicate IDs fail."
+    }
+  ]
+}

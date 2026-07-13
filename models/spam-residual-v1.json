@@ -1,0 +1,211 @@
+{
+  "default_eligible": true,
+  "feature_count": 7,
+  "feature_names": [
+    "ln_1p_word_count",
+    "ln_1p_link_count",
+    "link_ratio",
+    "uppercase_ratio",
+    "lexical_diversity",
+    "char_entropy",
+    "avg_word_length"
+  ],
+  "input_name": "features",
+  "model": "spam-residual-v1",
+  "model_sha256": "866c08462fef0dd9bae5f9e948df5df01fd14910227a648dc946278d5ad038df",
+  "optimizer_iterations": 27,
+  "output_name": "spam_residual_logodds",
+  "parity_vectors": [
+    {
+      "features": [
+        2.8332133293151855,
+        0.0,
+        0.0,
+        0.03333333507180214,
+        0.9375,
+        4.0491461753845215,
+        3.875
+      ],
+      "id": "uci-sms-spam:7",
+      "residual_logit": -0.43769314885139465
+    },
+    {
+      "features": [
+        2.1972246170043945,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        3.7803947925567627,
+        3.5
+      ],
+      "id": "uci-sms-spam:15",
+      "residual_logit": -0.9890041351318359
+    },
+    {
+      "features": [
+        1.6094379425048828,
+        0.0,
+        0.0,
+        0.05882352963089943,
+        1.0,
+        3.9361815452575684,
+        5.75
+      ],
+      "id": "uci-sms-spam:17",
+      "residual_logit": 0.1534310281276703
+    }
+  ],
+  "partition_counts": {
+    "test": {
+      "negative": 893,
+      "positive": 348,
+      "records": 1241,
+      "sources": {
+        "uci-sms-spam": {
+          "positive": 119,
+          "records": 885
+        },
+        "uci-youtube-spam": {
+          "positive": 229,
+          "records": 356
+        }
+      }
+    },
+    "train": {
+      "negative": 4089,
+      "positive": 1160,
+      "records": 5249,
+      "sources": {
+        "uci-sms-spam": {
+          "positive": 540,
+          "records": 3946
+        },
+        "uci-youtube-spam": {
+          "positive": 620,
+          "records": 1303
+        }
+      }
+    },
+    "validation": {
+      "negative": 795,
+      "positive": 242,
+      "records": 1037,
+      "sources": {
+        "uci-sms-spam": {
+          "positive": 88,
+          "records": 743
+        },
+        "uci-youtube-spam": {
+          "positive": 154,
+          "records": 294
+        }
+      }
+    }
+  },
+  "selected_l2": 0.0,
+  "source_manifest": {
+    "sources": [
+      {
+        "citation": "Almeida, T. & Hidalgo, J. (2011). SMS Spam Collection.",
+        "doi": "10.24432/C5CC84",
+        "expected_records": 5574,
+        "id": "uci-sms-spam",
+        "importer": "uci_sms",
+        "license": "CC BY 4.0",
+        "name": "SMS Spam Collection",
+        "sha256": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+        "url": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip"
+      },
+      {
+        "citation": "Alberto, T. & Lochter, J. (2015). YouTube Spam Collection.",
+        "doi": "10.24432/C58885",
+        "expected_records": 1953,
+        "id": "uci-youtube-spam",
+        "importer": "uci_youtube",
+        "license": "CC BY 4.0",
+        "name": "YouTube Spam Collection",
+        "normalization": "Drops three exact duplicate rows; conflicting duplicate IDs fail.",
+        "sha256": "bd6182891adb3cfc8334b82c062176dfbebc563bf0ba07e31c2645f916865a0a",
+        "source_records": 1956,
+        "url": "https://archive.ics.uci.edu/static/public/380/youtube+spam+collection.zip"
+      }
+    ]
+  },
+  "split_policy": "sha256-prefix-mod-100: train=0..69, validation=70..84, test=85..99",
+  "test_metrics": {
+    "baseline": {
+      "average_precision": 0.4750482568435066,
+      "brier": 0.25075195163643416,
+      "expected_calibration_error": 0.2353827986021373,
+      "negative": 893,
+      "positive": 348,
+      "records": 1241,
+      "threshold_0_5": {
+        "f1": 0.06666666666666667,
+        "false_negative": 336,
+        "false_positive": 0,
+        "precision": 1.0,
+        "recall": 0.034482758620689655,
+        "true_negative": 893,
+        "true_positive": 12
+      }
+    },
+    "trained": {
+      "average_precision": 0.6855468749961197,
+      "brier": 0.14815616993728598,
+      "expected_calibration_error": 0.1161769615578373,
+      "negative": 893,
+      "positive": 348,
+      "records": 1241,
+      "threshold_0_5": {
+        "f1": 0.5411764705882354,
+        "false_negative": 210,
+        "false_positive": 24,
+        "precision": 0.8518518518518519,
+        "recall": 0.39655172413793105,
+        "true_negative": 869,
+        "true_positive": 138
+      }
+    }
+  },
+  "tool_versions": {
+    "numpy": "2.5.1",
+    "onnx": "1.22.0",
+    "onnxruntime": "1.27.0",
+    "scipy": "1.18.0"
+  },
+  "training_command": "uv run --group model python scripts/train_spam_model.py --input data/eval/uci-sms-spam-features.jsonl --input data/eval/uci-youtube-spam-features.jsonl",
+  "validation_candidates": [
+    {
+      "average_precision": 0.753116946240494,
+      "brier": 0.10230096011038495,
+      "iterations": 27,
+      "l2": 0.0
+    },
+    {
+      "average_precision": 0.7470882348524248,
+      "brier": 0.10714116072173424,
+      "iterations": 20,
+      "l2": 0.01
+    },
+    {
+      "average_precision": 0.6985876126190613,
+      "brier": 0.12506765835370467,
+      "iterations": 11,
+      "l2": 0.1
+    },
+    {
+      "average_precision": 0.6039392194513995,
+      "brier": 0.1552135927402971,
+      "iterations": 10,
+      "l2": 1.0
+    },
+    {
+      "average_precision": 0.5955265090143341,
+      "brier": 0.16847678656076878,
+      "iterations": 12,
+      "l2": 10.0
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "chaffnet-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "scripts": {
+    "build:mcp": "bun run build:sdk && bun run --cwd packages/chaffnet-mcp build",
+    "build:sdk": "bun run --cwd packages/chaffnet build",
+    "pack:mcp": "bun pm pack --cwd packages/chaffnet-mcp --dry-run",
+    "pack:sdk": "bun pm pack --cwd packages/chaffnet --dry-run",
+    "test:mcp": "bun run build:mcp && bun test packages/chaffnet-mcp/test",
+    "test:sdk": "bun test packages/chaffnet/test",
+    "typecheck:mcp": "bun run build:sdk && bun run --cwd packages/chaffnet-mcp typecheck",
+    "typecheck:sdk": "bun run --cwd packages/chaffnet typecheck"
+  }
+}

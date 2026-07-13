@@ -1,0 +1,2 @@
+# No IP reputation feed is bundled. The former entries used documentation-only
+# address ranges and were not real reputation data.

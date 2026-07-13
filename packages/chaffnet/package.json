@@ -1,0 +1,33 @@
+{
+  "name": "chaffnet",
+  "version": "0.1.0",
+  "description": "TypeScript client for the chaffnet content classification API",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iuliandita/chaffnet.git",
+    "directory": "packages/chaffnet"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "test": "bun test test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}

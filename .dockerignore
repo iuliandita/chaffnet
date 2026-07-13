@@ -1,0 +1,17 @@
+.git
+.github
+.env
+.env.*
+.venv
+target
+data
+docs
+eval
+reputation
+scripts
+scratch
+tmp
+**/__pycache__
+**/*.pyc
+*.log
+README.md

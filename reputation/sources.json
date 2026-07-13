@@ -1,0 +1,15 @@
+{
+  "sources": [
+    {
+      "id": "disposable-email-domains",
+      "name": "Disposable Email Domains",
+      "url": "https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/main/disposable_email_blocklist.conf",
+      "license": "CC0-1.0",
+      "license_url": "https://github.com/disposable-email-domains/disposable-email-domains/blob/main/LICENSE.txt",
+      "importer": "domains",
+      "output": "crates/chaffnet-core/data/disposable-email-domains.txt",
+      "minimum_records": 3000,
+      "maximum_records": 200000
+    }
+  ]
+}

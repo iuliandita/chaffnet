@@ -1,0 +1,14 @@
+{
+  "retrieved_at": "2026-07-13T00:09:39Z",
+  "sources": [
+    {
+      "id": "disposable-email-domains",
+      "license": "CC0-1.0",
+      "license_url": "https://github.com/disposable-email-domains/disposable-email-domains/blob/main/LICENSE.txt",
+      "output": "crates/chaffnet-core/data/disposable-email-domains.txt",
+      "records": 7978,
+      "sha256": "89c8605a535e69c00c5ef4eb5cac65d1f93846597f722951d8c52f508447b3b6",
+      "url": "https://raw.githubusercontent.com/disposable-email-domains/disposable-email-domains/main/disposable_email_blocklist.conf"
+    }
+  ]
+}
