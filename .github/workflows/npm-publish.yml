@@ -1,0 +1,69 @@
+name: npm publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: startsWith(github.event.release.tag_name, 'v')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: "1.3.14"
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24.15.0"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Verify npm
+        run: |
+          set -euo pipefail
+          test "$(npm --version)" = "11.12.1"
+      - name: Validate release ref
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor HEAD origin/main
+          sdk_version=$(node -p "require('./packages/chaffnet/package.json').version")
+          mcp_version=$(node -p "require('./packages/chaffnet-mcp/package.json').version")
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          test "$RELEASE_TAG" = "v$sdk_version"
+          test "$mcp_version" = "$sdk_version"
+      - run: bun install --frozen-lockfile
+      - name: Verify packages
+        run: |
+          set -euo pipefail
+          bun run typecheck:sdk
+          bun run test:sdk
+          bun run build:sdk
+          bun run typecheck:mcp
+          bun run test:mcp
+      - name: Verify SDK artifact
+        working-directory: packages/chaffnet
+        run: npm pack --dry-run --ignore-scripts
+      - name: Verify MCP artifact
+        working-directory: packages/chaffnet-mcp
+        run: npm pack --dry-run --ignore-scripts
+      - name: Publish SDK
+        working-directory: packages/chaffnet
+        run: npm publish --access public
+      - name: Publish MCP server
+        working-directory: packages/chaffnet-mcp
+        run: npm publish --access public
