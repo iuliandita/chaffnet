@@ -29,7 +29,7 @@ RUN --mount=type=cache,id=chaffnet-cargo-registry-${TARGETARCH},target=/usr/loca
     cp /src/target/release/chaffnet-server /out/chaffnet-server && \
     strip /out/chaffnet-server
 
-FROM gcr.io/distroless/cc-debian13:nonroot@sha256:aded2458d026e046cb68199db0e5793e1028ffa143f7258f3c4278253e20add7
+FROM gcr.io/distroless/cc-debian13:nonroot@sha256:cb87acc574abe719b6e5c547384defa2f7b1f24af9605d3f618cf852495d8be2
 
 LABEL org.opencontainers.image.source="https://github.com/iuliandita/chaffnet" \
       org.opencontainers.image.licenses="Apache-2.0"
